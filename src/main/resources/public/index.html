@@ -2,29 +2,54 @@
     <head>
         <link href="/webjars/bootstrap/3.3.1/css/bootstrap.min.css/" rel="stylesheet">
         <link href="/webjars/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/app/css/style.css" rel="stylesheet">
+        <link href="/app/touchsplitter/touchsplitter.css" rel="stylesheet">
+        <style>
+            html,body {
+            width:100%;
+            height:100%;
+            }
+            body { margin:0; }
+            .split-me>div{
+            background: #444;
+            }
+            .split-me>div:first-child{
+            background: #555;
+            }
+            .split-me>div:last-child{
+            background: #666;
+            }
+
+            .split-me-container {
+            position: absolute;
+            top: 0em;
+            left: 0em;
+            right: 0em;
+            bottom: 0em;
+
+            overflow: hidden;
+            }
+
+            .splitter-bar {
+            background: #333;
+            }
+        </style>
     </head>
     <body>
-        <div class="container">
-            <div id="header">
-                header
-                <span id="mousestatus"></span>
-                <span id="clickevent"></span>
-            </div>
-            <div id="sidebar">
-                <span id="position"></span>
-                <div id="dragbar"></div>
-                sidebar
-            </div>
-            <div id="main">
-                main
-            </div>
-            <div id="footer">
-                footer
+        <div class="split-me-container">
+            <div class="split-me-vertically">
+                <div> Left Side </div>
+                <div class="split-me-horizontally">
+                    <div> Top Side </div>
+                    <div> Bottom Side </div>
+                </div>
             </div>
         </div>
         <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
         <script src="/webjars/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="/app/js/dragbar.js"></script>
+        <script src="/app/touchsplitter/jquery.touchsplitter.js"></script>
+        <script>
+            $('.split-me-vertically').touchSplit({leftMin:200, rightMin:300, thickness: "5px", dock:"left"})
+		    $('.split-me-horizontally').touchSplit({thickness: "5px", orientation:"vertical", dock: "top"})
+        </script>
     </body>
 </html>
