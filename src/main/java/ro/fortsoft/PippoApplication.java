@@ -17,37 +17,17 @@ public class PippoApplication extends Application {
 
     @Override
     protected void onInit() {
-        getRouter().ignorePaths("/favicon.ico");
 
-        // send 'Hello World' as response
+        addPublicResourceRoute("/app");
+        addWebjarsResourceRoute();
+
         GET("/", new RouteHandler() {
 
             @Override
             public void handle(RouteContext routeContext) {
-                routeContext.send("Hello World");
-            }
-
-        });
-
-        // send a template as response
-        GET("/template", new RouteHandler() {
-
-            @Override
-            public void handle(RouteContext routeContext) {
-                String message;
-
-                String lang = routeContext.getParameter("lang").toString();
-                if (lang == null) {
-                    message = getMessages().get("pippo.greeting", routeContext);
-                } else {
-                    message = getMessages().get("pippo.greeting", lang);
-                }
-
-                routeContext.setLocal("greeting", message);
-                routeContext.render("hello");
+                routeContext.render("index.html");
             }
 
         });
     }
-
 }
