@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: ro.pippo:pippo-freemarker:0.6.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/ro/pippo/pippo-freemarker/0.6.0-SNAPSHOT/pippo-freemarker-0.6.0-20150629.084826-2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/ro/pippo/pippo-freemarker/0.6.0-SNAPSHOT/pippo-freemarker-0.6.0-20150629.084826-2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/ro/pippo/pippo-freemarker/0.6.0-SNAPSHOT/pippo-freemarker-0.6.0-20150629.084826-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
