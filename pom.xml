@@ -46,6 +46,12 @@
             <version>${pippo.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>ro.pippo</groupId>
+            <artifactId>pippo-fastjson</artifactId>
+            <version>${pippo.version}</version>
+        </dependency>
+
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

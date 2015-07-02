@@ -2,54 +2,54 @@
 <head>
     <link href="/webjars/bootstrap/3.3.1/css/bootstrap.min.css/" rel="stylesheet">
     <link href="/webjars/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/app/touchsplitter/touchsplitter.css" rel="stylesheet">
     <link href="/app/treeview/bootstrap-treeview.min.css" rel="stylesheet">
     <style>
-        html,body {
-        width:100%;
-        height:100%;
-        }
-        body { margin:0; }
-        .split-me>div{
-        background: #444;
-        }
-        .split-me>div:first-child{
-        background: #555;
-        }
-        .split-me>div:last-child{
-        background: #666;
+
+        body {
+            padding-top: 60px;
         }
 
         .split-me-container {
-        position: absolute;
-        top: 0em;
-        left: 0em;
-        right: 0em;
-        bottom: 0em;
-
-        overflow: hidden;
+            position: absolute;
+            top: 0em;
+            left: 0em;
+            right: 0em;
+            bottom: 0em;
+            overflow: hidden;
         }
 
         .splitter-bar {
-        background: #333;
+            background: #333;
         }
 
 
-        #textbox
-        {
+        #sql {
+            width:100%;
+            height:35%;
+            box-sizing: border-box;         /* For IE and modern versions of Chrome */
+            -moz-box-sizing: border-box;    /* For Firefox                          */
+            -webkit-box-sizing: border-box; /* For Safari                           */
+        }
 
+        .buttons{
+        display:block;
         width:100%;
-        height:100%;
-        box-sizing: border-box;         /* For IE and modern versions of Chrome */
-        -moz-box-sizing: border-box;    /* For Firefox                          */
-        -webkit-box-sizing: border-box; /* For Safari                           */
+        height:5%;
+        background-color:#232;
         }
+
+        .results{
+            display:block;
+            width:100%;
+            height:60%;
+            background-color:#475;
+        }
+
     </style>
 </head>
 <body>
 
-<!-- Static navbar -->
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -58,84 +58,54 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">SQLXPLR</a>
+            <a class="navbar-brand" href="#">Sql xplr</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Connections</a></li>
+                <li class="active"><a href="#">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
 
 <div class="container">
-    <div class="split-me-container">
-        <div class="split-me-vertically">
+    <div class="row">
+        <div class="col-md-3">
             <div id="tree"></div>
-            <div class="split-me-horizontally">
-                <div style="background-color: #b0c4de;"><textarea id="textbox"></textarea></div>
-                <div style="background-color: #00ff00;"> Bottom Side</div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea id="sql"></textarea>
+                </div>
+                <div class="col-md-12">
+                    <div class="buttons">
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="results">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script src="/webjars/jquery/2.1.4/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="/app/touchsplitter/jquery.touchsplitter.js"></script>
 <script src="/app/treeview/bootstrap-treeview.min.js"></script>
 <script>
-            console.log('Start splitting the screen');
-            $('.split-me-vertically').touchSplit({leftMin:200, rightMin:300, thickness: "5px", dock:"left"})
-		    $('.split-me-horizontally').touchSplit({thickness: "5px", orientation:"vertical", dock: "top"})
-		    $('#tree').treeview({data: [
-  {
-    text: "Parent 1",
-    nodes: [
-      {
-        text: "Child 1",
-        nodes: [
-          {
-            text: "Grandchild 1"
-          },
-          {
-            text: "Grandchild 2"
-          }
-        ]
-      },
-      {
-        text: "Child 2"
-      }
-    ]
-  },
-  {
-    text: "Parent 2"
-  },
-  {
-    text: "Parent 3"
-  },
-  {
-    text: "Parent 4"
-  },
-  {
-    text: "Parent 5"
-  }
-]});
-
-
+           var tree = [];
+           $.ajax({
+                dataType: "json",
+                url: "/jdbc/connections",
+                success: function(info) {
+                    $('#tree').treeview({data: info});
+                }
+           });
 </script>
 </body>
 </html>
